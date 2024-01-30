@@ -6,12 +6,12 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:34:36 by dhasan            #+#    #+#             */
-/*   Updated: 2024/01/16 23:21:26 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/01/30 20:16:12 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+//should i close it first or later??
 int	ft_open_file(char *file)
 {
 	int	fd;
@@ -19,9 +19,8 @@ int	ft_open_file(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Error\nFailed to open map file.");
 		close(fd);
-		exit(EXIT_FAILURE);
+		ft_msg_exit("Error\nFailed to open map file.\n", 1);
 	}
 	close(fd);
 	return (fd);
@@ -29,14 +28,14 @@ int	ft_open_file(char *file)
 
 void	ft_update(t_game *game, int x, int y)
 {
-	if (game->map[x][y] == PLAYER)
+	if (game->map[y][x] == PLAYER)
 	{
-		game->player++;
+		game->check_p++;
 		game->p_x = x;
 		game->p_y = y;
 	}
-	if (game->map[x][y] == COLLECTIBLE)
-		game->collectible++;
-	if (game->map[x][y] == EXIT)
-		game->exit++;
+	if (game->map[y][x] == COLLECTIBLE)
+		game->check_c++;
+	if (game->map[y][x] == EXIT)
+		game->check_e++;
 }
