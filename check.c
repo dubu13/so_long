@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/01/17 00:26:10 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/01/30 19:37:40 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	ft_read_map(char *file, t_game *game)
 {
 	int		fd;
 	char	*line;
-	char	**map_temp;
+	char	*map_temp;
 
+	line = ft_calloc(1, sizeof(char));
+	map_temp = ft_calloc(1, sizeof(char));
 	game->rows = 0;
 	fd = ft_open_file(file);
 	while (line)
@@ -36,20 +38,17 @@ void	ft_read_map(char *file, t_game *game)
 	}
 	game->map_copy = ft_split(map_temp, '\n');
 	if (!game->map_copy)
-		ft_free(game->map_copy);
+		ft_free_mapcopy(game);
 	free(map_temp);
 }
 
-void	ft_file_name(char *file)
+void	ft_check_fileformat(char *file)
 {
 	int	len;
 
 	len = ft_strlen(file);
 	if (file[len - 1] != 'r' || file[len - 2] != 'e' \
 		|| file[len - 3] != 'b' || file[len - 4] != '.')
-	{
-		ft_printf("Error\nFile should be end with '.ber'\n");
-		exit(1);
-	}
+		ft_msg_exit("Error\nMap should be in '.ber' format.\n", 1);
 }
 
