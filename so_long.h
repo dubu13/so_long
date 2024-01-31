@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/01/30 20:21:38 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/01/31 17:54:06 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # include "MLX42/include/MLX42/MLX42.h"
-# include "lib_utils/lib_utils.h"
+# include "libft.h"
 # include <fcntl.h>
 # include <unistd.h>
 
@@ -38,7 +38,6 @@ typedef struct s_game
 	void			*mlx_ptr;
 	void			*window_ptr;
 	char			**map;
-	char			**map_copy;
 	int				rows;
 	int				cols;
 	int				p_x;
@@ -55,16 +54,15 @@ typedef struct s_game
 	mlx_image_t		*player;
 	mlx_image_t		*collectible;
 	mlx_image_t		*exit;
-	mlx_texture_t	*wall_t;
-	mlx_texture_t	*floor_t;
-	mlx_texture_t	*player_t;
-	mlx_texture_t	*collectible_t;
-	mlx_texture_t	*exit_t;
+	mlx_texture_t	*wall_tex;
+	mlx_texture_t	*floor_tex;
+	mlx_texture_t	*player_tex;
+	mlx_texture_t	*collectible_tex;
+	mlx_texture_t	*exit_tex;
 }					t_game;
 
 // so_long.c
 void		ft_set(t_game *game);
-// check.c
 void		ft_check_fileformat(char *argv);
 void		ft_read_map(char *file, t_game *game);
 // map.c
@@ -87,9 +85,10 @@ void		ft_move_left_right(t_game *game, char direction);
 void		ft_move(t_game *game, int y, int x);
 // utils.c
 int			ft_open_file(char *file);
-void		ft_update(t_game *game, int x, int y);
+void		ft_count_epc(t_game *game, int x, int y);
 // error_free.c
-void		ft_free_mapcopy(t_game *game);
+void		ft_free_map(t_game *game);
 void		ft_msg_exit(char *msg, int type);
+void		ft_free_img_tex(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 20:16:40 by dhasan            #+#    #+#             */
-/*   Updated: 2024/01/30 20:20:44 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/01/31 17:38:54 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void	ft_init(t_game *game)
 	ft_pass_texture(game);
 	ft_move_in_map(game);
 	mlx_key_hook(game->mlx_ptr, ft_handle_key, game);
+	mlx_loop(game->mlx_ptr);
 }

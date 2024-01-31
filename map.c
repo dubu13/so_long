@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:20:20 by dhasan            #+#    #+#             */
-/*   Updated: 2024/01/30 20:15:28 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/01/31 16:41:34 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void	ft_check_elements(t_game *game)
 			if (!ft_strchr("01CEP", game->map[y][x]))
 				ft_msg_exit("Error\nMap should only contain 0,1,C,E,P\n", 1);
 			else if (game->map[y][x] == PLAYER)
-				ft_update(game, x, y);
+				ft_count_epc(game, y, x);
 			else if (game->map[y][x] == COLLECTIBLE)
-				ft_update(game, x, y);
+				ft_count_epc(game, y, x);
+			else if (game->map[y][x] == EXIT)
+				ft_count_epc(game, y, x);
 			x++;
 		}
 		y++;
@@ -76,10 +78,10 @@ void	ft_map_shape(t_game *game)
 
 	y = game->cols;
 	x = 0;
-	max_len = ft_strlen(game->map_copy[y]);
+	max_len = ft_strlen(game->map[y]);
 	while (y < game->rows)
 	{
-		x = ft_strlen(game->map_copy[y]);
+		x = ft_strlen(game->map[y]);
 		if (max_len != x)
 			ft_msg_exit("Error\nMap should be rectangle.\n", 1);
 		y++;

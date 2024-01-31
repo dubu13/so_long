@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:34:36 by dhasan            #+#    #+#             */
-/*   Updated: 2024/01/30 20:16:12 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/01/31 16:13:27 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_open_file(char *file)
 	return (fd);
 }
 
-void	ft_update(t_game *game, int x, int y)
+void	ft_update(t_game *game, int y, int x)
 {
 	if (game->map[y][x] == PLAYER)
 	{
