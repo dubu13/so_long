@@ -1,8 +1,8 @@
 NAME = so_long
-CFLAGS = -Wall -Wextra -Werror -Ilibft -lft -Llibft/
+CFLAGS = -Wall -Wextra -Werror -Ilibft -lft -Llibft/ -g3
 MLX_FLAGS = -ldl -lglfw -pthread -lm
 
-SRCS = check.c error_free.c game.c image.c key_moves.c map.c so_long.c utils.c
+SRCS = error_free.c game.c image.c key_moves.c check_map.c read_map.c so_long.c
 
 MLX_URL = https://github.com/codam-coding-college/MLX42.git
 MLX_PATH = ./MLX42/build
@@ -11,13 +11,14 @@ MLX = $(MLX_PATH)/libmlx42.a
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
+
+
 all: $(NAME)
 
 $(NAME): lib $(SRCS) $(MAIN)
 	cc $(CFLAGS) $(SRCS) $(MAIN) $(MLX) $(MLX_FLAGS) -o $(NAME)
 
 lib: $(MLX) $(LIBFT)
-.PHONY: lib $(LIBFT)
 
 $(MLX):
 	git clone $(MLX_URL)
@@ -36,3 +37,5 @@ fclean: clean
 	make fclean -C $(LIBFT_PATH)
 
 re: fclean all
+
+.PHONY: all, $(LIBFT_PATH)/libft.a, clean, fclean, re $(LIBFT)

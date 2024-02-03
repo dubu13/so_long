@@ -6,53 +6,35 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/01/31 18:08:24 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/03 19:45:16 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_read_map(char *file, t_game *game)
+void	check_map(t_game *game)
 {
-	int		fd;
-	char	*line;
-	char	*map_temp;
-
-	line = ft_calloc(1, sizeof(char));
-	map_temp = ft_calloc(1, sizeof(char));
-	fd = ft_open_file(file);
-	while (line)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		map_temp = ft_strjoin_gnl(map_temp, line);
-		free(line);
-		if (!map_temp)
-		{
-			free(map_temp);
-			exit(EXIT_FAILURE);
-		}
-		game->rows++;
-	}
-	game->map = ft_split(map_temp, '\n');
-	if (!game->map)
-		ft_free_mapcopy(game);
-	free(map_temp);
+	map_shape(game);
+	check_elements(game);
+	check_epc(game);
+	check_wall(game);
 }
 
-void	ft_check_fileformat(char *file)
+void	check_extension(char *file)
 {
 	int	len;
 
 	len = ft_strlen(file);
 	if (file[len - 1] != 'r' || file[len - 2] != 'e' \
 		|| file[len - 3] != 'b' || file[len - 4] != '.')
-		ft_msg_exit("Error\nMap should be in '.ber' format.\n", 1);
+		msg_exit("Error\nMap should be in '.ber' format.\n", 1);
 }
 
-void	ft_set(t_game *game)
+static t_game	*initialize(void)
 {
+	t_game	*game;
+
+	game = ft_calloc(sizeof(t_game), 1);
 	game->player = 0;
 	game->collectible = 0;
 	game->exit = 0;
@@ -63,22 +45,27 @@ void	ft_set(t_game *game)
 	game->p_y = 0;
 	game->e_x = 0;
 	game->e_y = 0;
+	game->check_c = 0;
+	game->check_e = 0;
+	game->check_p = 0;
+	game->left_c = 0;
+	return (game);
 }
 
 int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	game = NULL;
 	if (argc != 2)
-		ft_msg_exit("Error\nNumber of arguments should be 2\n", 1);
-	ft_set(game);
-	ft_check_fileformat(argv[1]);
-	ft_read_map(argv[1], game);
-	ft_map_check(game);
+		msg_exit("Error\nNumber of arguments should be 2\n", 1);
+	game = initialize();
+	check_extension(argv[1]);
+	save_map(argv[1], game);
+	check_map(game);
 	ft_init(game);
-	ft_free_img_tex(game);
-	ft_free_map(game);
+	free_img_tex(game);
+	free_map(game);
 	mlx_terminate(game->mlx_ptr);
+	free(game);
 	exit(EXIT_SUCCESS);
 }

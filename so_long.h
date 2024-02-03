@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/01/31 17:54:06 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/03 22:03:57 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # include "MLX42/include/MLX42/MLX42.h"
-# include "libft.h"
+# include "libft/inc/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
 
@@ -27,17 +27,17 @@
 # define COLLECTIBLE 'C'
 # define EXIT 'E'
 
-# define WALL_PNG "./texture/wall2.png/"
+# define WALL_PNG "./texture/wall.png"
 # define FLOOR_PNG "./texture/floor.png"
 # define PLAYER_PNG "./texture/reaper.png"
 # define COLLECTIBLE_PNG "./texture/soul.png"
-# define EXIT_PNG "./texture/close.png"
+# define EXIT_PNG "./texture/exit.png"
 
 typedef struct s_game
 {
 	void			*mlx_ptr;
-	void			*window_ptr;
 	char			**map;
+	char			*map_temp;
 	int				rows;
 	int				cols;
 	int				p_x;
@@ -62,33 +62,32 @@ typedef struct s_game
 }					t_game;
 
 // so_long.c
-void		ft_set(t_game *game);
-void		ft_check_fileformat(char *argv);
-void		ft_read_map(char *file, t_game *game);
-// map.c
-void		ft_map_check(t_game *game);
-void		ft_map_shape(t_game *game);
-void		ft_check_elements(t_game *game);
-void		ft_check_epc(t_game *game);
-void		ft_check_wall(t_game *game);
+void		check_map(t_game *game);
+void		check_extension(char *argv);
+// read_map.c
+void		save_map(char *file, t_game *game);
+void		file_to_map(t_game *game, int fd);
+// check_map.c
+void		count_epc(t_game *game, int x, int y);
+void		map_shape(t_game *game);
+void		check_elements(t_game *game);
+void		check_epc(t_game *game);
+void		check_wall(t_game *game);
 // game.c
 void		ft_init(t_game *game);
-void		ft_move_in_map(t_game *game);
-void		ft_handle_key(mlx_key_data_t keydata, void *param);
+void		move_in_map(t_game *game);
+void		handle_key(mlx_key_data_t keydata, void *param);
 //image.c
-void		ft_pass_texture(t_game *game);
-void		ft_texture_wnd(t_game *game);
-void		ft_pass_to_wnd(t_game *game, int x, int y);
-//key_moves
-void		ft_move_up_down(t_game *game, char direction);
-void		ft_move_left_right(t_game *game, char direction);
-void		ft_move(t_game *game, int y, int x);
-// utils.c
-int			ft_open_file(char *file);
-void		ft_count_epc(t_game *game, int x, int y);
+void		ft_load_png(t_game *game);
+void		ft_tex_to_img(t_game *game);
+void		ft_img_to_wnd(t_game *game, int x, int y);
+//key_moves.c
+void		move_up_down(t_game *game, char direction);
+void		move_left_right(t_game *game, char direction);
+void		update(t_game *game, int y, int x);
 // error_free.c
-void		ft_free_map(t_game *game);
-void		ft_msg_exit(char *msg, int type);
-void		ft_free_img_tex(t_game *game);
+void		free_map(t_game *game);
+void		msg_exit(char *msg, int type);
+void		free_img_tex(t_game *game);
 
 #endif

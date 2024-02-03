@@ -6,35 +6,34 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 20:16:40 by dhasan            #+#    #+#             */
-/*   Updated: 2024/01/31 17:38:54 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/03 20:23:45 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_handle_key(mlx_key_data_t keydata, void *param)
+void	handle_key(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
 	game = param;
-
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		exit (0);
+		exit(EXIT_SUCCESS);
 	if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 		&& keydata.action == MLX_PRESS)
-		ft_move_up_down(game, 'U');
+		move_up_down(game, 'U');
 	if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
 		&& keydata.action == MLX_PRESS)
-		ft_move_up_down(game, 'D');
+		move_up_down(game, 'D');
 	if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
 		&& keydata.action == MLX_PRESS)
-		ft_move_left_right(game, 'L');
+		move_left_right(game, 'L');
 	if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 		&& keydata.action == MLX_PRESS)
-		ft_move_left_right(game, 'R');
+		move_left_right(game, 'R');
 }
 
-void	ft_move_in_map(t_game *game)
+void	move_in_map(t_game *game)
 {
 	int	x;
 	int	y;
@@ -45,7 +44,7 @@ void	ft_move_in_map(t_game *game)
 		x = 0;
 		while (x < game->cols)
 		{
-			ft_pass_to_wnd(game, y, x);
+			ft_img_to_wnd(game, y, x);
 			x++;
 		}
 		y++;
@@ -54,15 +53,15 @@ void	ft_move_in_map(t_game *game)
 
 void	ft_init(t_game *game)
 {
-	game->mlx_ptr = mlx_init(game->rows * IMG_PXL, game->cols * IMG_PXL,
+	game->mlx_ptr = mlx_init(game->cols * IMG_PXL, game->rows * IMG_PXL,
 			WND_NAME, true);
 	if (!game->mlx_ptr)
 	{
 		free(game->mlx_ptr);
-		ft_msg_exit("Error\nFailure in mlx_init!\n", 1);
+		msg_exit("Error\nFailure in mlx_init!\n", 1);
 	}
-	ft_pass_texture(game);
-	ft_move_in_map(game);
-	mlx_key_hook(game->mlx_ptr, ft_handle_key, game);
+	ft_load_png(game);
+	move_in_map(game);
+	mlx_key_hook(game->mlx_ptr, handle_key, game);
 	mlx_loop(game->mlx_ptr);
 }
