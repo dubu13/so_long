@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/03 22:03:57 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/04 17:04:02 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@
 # define COLLECTIBLE_PNG "./texture/soul.png"
 # define EXIT_PNG "./texture/exit.png"
 
+typedef struct s_collectibles
+{
+	int	x;
+	int	y;
+}				t_collectibles;
+
 typedef struct s_game
 {
 	void			*mlx_ptr;
@@ -42,12 +48,10 @@ typedef struct s_game
 	int				cols;
 	int				p_x;
 	int				p_y;
-	int				e_x;
-	int				e_y;
 	int				left_c;
-	int				check_p;
-	int				check_c;
-	int				check_e;
+	int				count_p;
+	int				count_c;
+	int				count_e;
 	int				moves;
 	mlx_image_t		*wall;
 	mlx_image_t		*floor;
@@ -59,6 +63,7 @@ typedef struct s_game
 	mlx_texture_t	*player_tex;
 	mlx_texture_t	*collectible_tex;
 	mlx_texture_t	*exit_tex;
+	t_collectibles	*collectibles;
 }					t_game;
 
 // so_long.c

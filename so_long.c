@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/03 19:45:16 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/04 17:07:04 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	check_map(t_game *game)
 {
 	map_shape(game);
 	check_elements(game);
+	game->left_c = game->count_c;
 	check_epc(game);
 	check_wall(game);
 }
@@ -32,23 +33,23 @@ void	check_extension(char *file)
 
 static t_game	*initialize(void)
 {
-	t_game	*game;
+	t_game			*game;
+	t_collectibles	*collectibles;
 
 	game = ft_calloc(sizeof(t_game), 1);
-	game->player = 0;
-	game->collectible = 0;
-	game->exit = 0;
-	game->moves = 0;
-	game->rows = 0;
-	game->cols = 0;
-	game->p_x = 0;
-	game->p_y = 0;
-	game->e_x = 0;
-	game->e_y = 0;
-	game->check_c = 0;
-	game->check_e = 0;
-	game->check_p = 0;
-	game->left_c = 0;
+	collectibles = ft_calloc(sizeof(t_collectibles), 1);
+	// game->player = 0;
+	// game->collectible = 0;
+	// game->exit = 0;
+	// game->moves = 0;
+	// game->rows = 0;
+	// game->cols = 0;
+	// game->p_x = 0;
+	// game->p_y = 0;
+	// game->count_c = 0;
+	// game->count_e = 0;
+	// game->count_p = 0;
+	// game->left_c = 0;
 	return (game);
 }
 

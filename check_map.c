@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:20:20 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/03 20:11:48 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/04 17:32:41 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@ void	count_epc(t_game *game, int y, int x)
 {
 	if (game->map[y][x] == PLAYER)
 	{
-		game->check_p++;
+		game->count_p++;
 		game->p_x = x;
 		game->p_y = y;
 	}
 	if (game->map[y][x] == COLLECTIBLE)
-		game->check_c++;
+	{
+		// game->collectibles[game->count_c].x = x;
+		// game->collectibles[game->count_c].y = y;
+		game->count_c++;
+	}
 	if (game->map[y][x] == EXIT)
-		game->check_e++;
+		game->count_e++;
 }
 
 void	check_wall(t_game *game)
@@ -50,11 +54,11 @@ void	check_wall(t_game *game)
 
 void	check_epc(t_game *game)
 {
-	if (game->check_e != 1)
+	if (game->count_e != 1)
 		msg_exit("Error\nMap should contain 1 exit!\n", 1);
-	if (game->check_p != 1)
+	if (game->count_p != 1)
 		msg_exit("Error\nMap should contain 1 player!\n", 1);
-	if (game->check_c < 1)
+	if (game->count_c < 1)
 		msg_exit("Error\nMap should contain least 1 collectible!\n", 1);
 }
 
