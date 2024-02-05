@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:06:13 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/03 22:22:50 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/05 22:09:56 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	ft_img_to_wnd(t_game *game, int y, int x)
 		mlx_image_to_window(game->mlx_ptr, game->collectible, x * 64, y * 64);
 	else if (pos == EXIT)
 		mlx_image_to_window(game->mlx_ptr, game->exit, x * 64, y * 64);
-	else if (pos == PLAYER)
-		mlx_image_to_window(game->mlx_ptr, game->player, x * 64, y * 64);
 }
 
 void	ft_tex_to_img(t_game *game)

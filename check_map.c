@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:20:20 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/04 17:32:41 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/05 21:32:58 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ void	count_epc(t_game *game, int y, int x)
 		game->p_y = y;
 	}
 	if (game->map[y][x] == COLLECTIBLE)
-	{
-		// game->collectibles[game->count_c].x = x;
-		// game->collectibles[game->count_c].y = y;
 		game->count_c++;
-	}
 	if (game->map[y][x] == EXIT)
 		game->count_e++;
 }

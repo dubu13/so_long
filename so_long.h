@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/04 17:04:02 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/05 22:52:37 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_game
 	t_collectibles	*collectibles;
 }					t_game;
 
+// void		print_map(t_game *game);
 // so_long.c
 void		check_map(t_game *game);
 void		check_extension(char *argv);

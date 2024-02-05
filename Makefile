@@ -2,7 +2,7 @@ NAME = so_long
 CFLAGS = -Wall -Wextra -Werror -Ilibft -lft -Llibft/ -g3
 MLX_FLAGS = -ldl -lglfw -pthread -lm
 
-SRCS = error_free.c game.c image.c key_moves.c check_map.c read_map.c so_long.c
+SRCS = error_free.c game.c image.c key_moves.c check_map.c read_map.c main.c
 
 MLX_URL = https://github.com/codam-coding-college/MLX42.git
 MLX_PATH = ./MLX42/build
