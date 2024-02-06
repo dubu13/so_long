@@ -6,26 +6,25 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:06:13 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/05 22:09:56 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/06 19:12:36 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_img_to_wnd(t_game *game, int y, int x)
+void	str_moves(t_game *game, int c)
 {
-	char	pos;
+	char				*str;
+	char				*tmp;
+	static mlx_image_t	*img = NULL;
 
-	pos = game->map[y][x];
-	if (pos == FLOOR || pos == WALL || pos == PLAYER \
-		|| pos == COLLECTIBLE || pos == EXIT)
-		mlx_image_to_window(game->mlx_ptr, game->floor, x * 64, y * 64);
-	if (pos == WALL)
-		mlx_image_to_window(game->mlx_ptr, game->wall, x * 64, y * 64);
-	else if (pos == COLLECTIBLE)
-		mlx_image_to_window(game->mlx_ptr, game->collectible, x * 64, y * 64);
-	else if (pos == EXIT)
-		mlx_image_to_window(game->mlx_ptr, game->exit, x * 64, y * 64);
+	str = ft_itoa(c);
+	tmp = ft_strjoin("Moves: ", str);
+	if (img)
+		mlx_delete_image(game->mlx_ptr, img);
+	img = mlx_put_string(game->mlx_ptr, tmp, 0, 0);
+	free(str);
+	free(tmp);
 }
 
 void	ft_tex_to_img(t_game *game)

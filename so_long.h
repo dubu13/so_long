@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/05 22:52:37 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/06 17:47:50 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void		ft_init(t_game *game);
 void		move_in_map(t_game *game);
 void		handle_key(mlx_key_data_t keydata, void *param);
 //image.c
+void		str_moves(t_game *game, int c);
 void		ft_load_png(t_game *game);
 void		ft_tex_to_img(t_game *game);
 void		ft_img_to_wnd(t_game *game, int x, int y);

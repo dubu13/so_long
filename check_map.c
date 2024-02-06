@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:20:20 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/05 21:32:58 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/06 15:28:20 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void	check_wall(t_game *game)
 	i = 0;
 	while (i < game->rows)
 	{
-		if (game->map[i][0] != WALL || \
+		if (game->map[i][0] != WALL ||
 			game->map[i][game->cols - 1] != WALL)
-			msg_exit("Error\nWall is missing.\n", 1);
+			msg_exit("Error\nMap is not surrounded by wall.\n", 1);
 		i++;
 	}
 	i = 0;
 	while (i < game->cols)
 	{
-		if (game->map[0][i] != WALL || \
+		if (game->map[0][i] != WALL ||
 			game->map[game->rows - 1][i] != WALL)
-			msg_exit("Error\nWall is missing.\n", 1);
+			msg_exit("Error\nMap is not surrounded by wall.\n", 1);
 		i++;
 	}
 }

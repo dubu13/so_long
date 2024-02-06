@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:41:19 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/05 22:53:05 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/06 18:51:55 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	update_collectible(t_game *game, int y, int x)
 	i = 0;
 	while (i < game->count_c)
 	{
-		if (game->collectible->instances[i].x == x * 64
-			&& game->collectible->instances[i].y == y * 64)
+		if (game->collectible->instances[i].x == x * IMG_PXL
+			&& game->collectible->instances[i].y == y * IMG_PXL)
 		{
 			game->collectible->instances[i].enabled = false;
 			game->left_c--;
@@ -36,8 +36,8 @@ void	update_player(t_game *game, int y, int x)
 		game->map[y][x] = PLAYER;
 	game->p_y = y;
 	game->p_x = x;
-	game->player->instances->x = game->p_x * 64;
-	game->player->instances[0].y = game->p_y * 64;
+	game->player->instances->x = game->p_x * IMG_PXL;
+	game->player->instances->y = game->p_y * IMG_PXL;
 	// print_map(game);
 }
 
@@ -45,8 +45,9 @@ void	update(t_game *game, int y, int x)
 {
 	if (game->map[y][x] == EXIT && game->left_c == 0)
 	{
+		game->moves++;
 		free_map(game);
-		msg_exit("Congratulation!\n", 0);
+		msg_exit("Congratulation!\nYou finished the game\n", 0);
 	}
 	if (game->map[y][x] == COLLECTIBLE)
 	{
@@ -54,11 +55,14 @@ void	update(t_game *game, int y, int x)
 		update_player(game, y, x);
 		game->moves++;
 	}
-	// if (game->map[y][x] == FLOOR)
-	// {
+	else
+	{
 		update_player(game, y, x);
 		game->moves++;
-	// }
+	}
+	ft_printf("Moves: %d\n", game->moves);
+	ft_printf("Collectibles left: %d\n", game->left_c);
+	str_moves(game, game->moves);
 }
 
 void	move_left_right(t_game *game, char direction)

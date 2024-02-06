@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/05 22:52:32 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/06 15:13:04 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static t_game	*initialize(void)
 
 	game = ft_calloc(sizeof(t_game), 1);
 	collectibles = ft_calloc(sizeof(t_collectibles), 1);
-	game->player = 0;
-	game->collectible = 0;
-	game->exit = 0;
+	// game->player = 0;
+	// game->collectible = 0;
+	// game->exit = 0;
 	game->moves = 0;
 	game->rows = 0;
 	game->cols = 0;

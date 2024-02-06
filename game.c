@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 20:16:40 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/05 22:13:18 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/06 15:45:34 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,25 @@ void	handle_key(mlx_key_data_t keydata, void *param)
 		move_left_right(game, 'R');
 }
 
-// void	handle_key(mlx_key_data_t keydata, void *param)
-// {
-// 	t_game		*game;
-// 	const int	x = ((t_game *)param)->player->instances->x / 64;
-// 	const int	y = ((t_game *)param)->player->instances->y / 64;
+void	ft_img_to_wnd(t_game *game, int y, int x)
+{
+	char	pos;
 
-// 	game = param;
-// 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-// 		exit(EXIT_SUCCESS);
-// 	if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-// 		&& keydata.action == MLX_PRESS && game->map[y - 1][x] != WALL)
-// 		game->player->instances->y -= 64;
-// 	if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-// 		&& keydata.action == MLX_PRESS && game->map[y + 1][x] != WALL)
-// 		game->player->instances->y += 64;
-// 	if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-// 		&& keydata.action == MLX_PRESS && game->map[y][x - 1] != WALL)
-// 		game->player->instances->x -= 64;
-// 	if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
-// 		&& keydata.action == MLX_PRESS && game->map[y][x + 1] != WALL)
-// 		game->player->instances->x += 64;
-// }
+	pos = game->map[y][x];
+	if (pos == FLOOR || pos == WALL || pos == PLAYER
+		|| pos == COLLECTIBLE || pos == EXIT)
+		mlx_image_to_window(game->mlx_ptr, game->floor,
+			x * IMG_PXL, y * IMG_PXL);
+	if (pos == WALL)
+		mlx_image_to_window(game->mlx_ptr, game->wall,
+			x * IMG_PXL, y * IMG_PXL);
+	else if (pos == COLLECTIBLE)
+		mlx_image_to_window(game->mlx_ptr, game->collectible,
+			x * IMG_PXL, y * IMG_PXL);
+	else if (pos == EXIT)
+		mlx_image_to_window(game->mlx_ptr, game->exit,
+			x * IMG_PXL, y * IMG_PXL);
+}
 
 void	move_in_map(t_game *game)
 {
@@ -85,8 +82,8 @@ void	ft_init(t_game *game)
 	}
 	ft_load_png(game);
 	move_in_map(game);
-	mlx_image_to_window(game->mlx_ptr, game->player, game->p_x * 64,
-		game->p_y * 64);
+	mlx_image_to_window(game->mlx_ptr, game->player, game->p_x * IMG_PXL,
+		game->p_y * IMG_PXL);
 	mlx_key_hook(game->mlx_ptr, handle_key, game);
 	mlx_loop(game->mlx_ptr);
 }
