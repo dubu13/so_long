@@ -16,25 +16,25 @@ LIBFT = $(LIBFT_PATH)/libft.a
 all: $(NAME)
 
 $(NAME): lib $(SRCS) $(MAIN)
-	cc $(CFLAGS) $(SRCS) $(MAIN) $(MLX) $(MLX_FLAGS) -o $(NAME)
+	@cc $(CFLAGS) $(SRCS) $(MAIN) $(MLX) $(MLX_FLAGS) -o $(NAME)
 
 lib: $(MLX) $(LIBFT)
 
 $(MLX):
-	git clone $(MLX_URL)
-	cd MLX42 && cmake -B build && cmake --build build
+	@git clone $(MLX_URL)
+	@cd MLX42 && cmake -B build && cmake --build build
 
 
 $(LIBFT):
-	make -C $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH)
 
 clean:
-	make clean -C $(LIBFT_PATH)
-	rm -rf MLX42
+	@make clean -C $(LIBFT_PATH)
+	@rm -rf MLX42
 
 fclean: clean
-	rm -f $(NAME)
-	make fclean -C $(LIBFT_PATH)
+	@rm -f $(NAME)
+	@make fclean -C $(LIBFT_PATH)
 
 re: fclean all
 

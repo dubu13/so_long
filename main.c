@@ -6,27 +6,17 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/06 15:13:04 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/12 23:16:03 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// void	allocate_collectibles(t_game *game)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	game->collectibles = ft_calloc(sizeof(t_collectibles), game->count_c);
-// 	game->left_c = game->count_c;
-// }
 
 void	check_map(t_game *game)
 {
 	map_shape(game);
 	check_elements(game);
 	game->left_c = game->count_c;
-	// allocate_collectibles(game);
 	check_epc(game);
 	check_wall(game);
 }
@@ -44,13 +34,10 @@ void	check_extension(char *file)
 static t_game	*initialize(void)
 {
 	t_game			*game;
-	t_collectibles	*collectibles;
 
 	game = ft_calloc(sizeof(t_game), 1);
-	collectibles = ft_calloc(sizeof(t_collectibles), 1);
-	// game->player = 0;
-	// game->collectible = 0;
-	// game->exit = 0;
+	if (!game)
+		exit(EXIT_FAILURE);
 	game->moves = 0;
 	game->rows = 0;
 	game->cols = 0;
@@ -63,34 +50,25 @@ static t_game	*initialize(void)
 	return (game);
 }
 
-// void	print_map(t_game *game)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < game->rows)
-// 	{
-// 		ft_putstr_fd(game->map[i], 1);
-// 		ft_putchar_fd('\n', 1);
-// 		i++;
-// 	}
-// }
+void leaks(void)
+{
+	system("leaks so_long");
+}
 
 int	main(int argc, char **argv)
 {
 	t_game	*game;
+	atexit(&leaks);
 
 	if (argc != 2)
 		msg_exit("Error\nNumber of arguments should be 2\n", 1);
-	game = initialize();
 	check_extension(argv[1]);
+	game = initialize();
 	save_map(argv[1], game);
-	// print_map(game);
 	check_map(game);
 	ft_init(game);
 	free_img_tex(game);
 	free_map(game);
 	mlx_terminate(game->mlx_ptr);
 	free(game);
-	exit(EXIT_SUCCESS);
 }

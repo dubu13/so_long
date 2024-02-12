@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:41:19 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/06 18:51:55 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/12 23:19:08 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	update_player(t_game *game, int y, int x)
 	game->p_x = x;
 	game->player->instances->x = game->p_x * IMG_PXL;
 	game->player->instances->y = game->p_y * IMG_PXL;
-	// print_map(game);
 }
 
 void	update(t_game *game, int y, int x)
@@ -62,7 +61,7 @@ void	update(t_game *game, int y, int x)
 	}
 	ft_printf("Moves: %d\n", game->moves);
 	ft_printf("Collectibles left: %d\n", game->left_c);
-	str_moves(game, game->moves);
+	moves_to_wnd(game, game->moves);
 }
 
 void	move_left_right(t_game *game, char direction)

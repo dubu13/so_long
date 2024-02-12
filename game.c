@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 20:16:40 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/06 15:45:34 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/12 20:19:48 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handle_key(mlx_key_data_t keydata, void *param)
 
 	game = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		exit(EXIT_SUCCESS);
+		exit (EXIT_SUCCESS);
 	if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 		&& keydata.action == MLX_PRESS)
 		move_up_down(game, 'U');
@@ -73,6 +73,7 @@ void	move_in_map(t_game *game)
 
 void	ft_init(t_game *game)
 {
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->mlx_ptr = mlx_init(game->cols * IMG_PXL, game->rows * IMG_PXL,
 			WND_NAME, true);
 	if (!game->mlx_ptr)

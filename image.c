@@ -6,13 +6,13 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:06:13 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/06 19:12:36 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/12 23:14:54 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	str_moves(t_game *game, int c)
+void	moves_to_wnd(t_game *game, int c)
 {
 	char				*str;
 	char				*tmp;

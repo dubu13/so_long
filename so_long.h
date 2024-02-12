@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/06 17:47:50 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/12 23:20:51 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,9 @@
 
 # define WALL_PNG "./texture/wall.png"
 # define FLOOR_PNG "./texture/floor.png"
-# define PLAYER_PNG "./texture/reaper.png"
-# define COLLECTIBLE_PNG "./texture/soul.png"
+# define PLAYER_PNG "./texture/player.png"
+# define COLLECTIBLE_PNG "./texture/collectible.png"
 # define EXIT_PNG "./texture/exit.png"
-
-typedef struct s_collectibles
-{
-	int	x;
-	int	y;
-}				t_collectibles;
 
 typedef struct s_game
 {
@@ -63,11 +57,9 @@ typedef struct s_game
 	mlx_texture_t	*player_tex;
 	mlx_texture_t	*collectible_tex;
 	mlx_texture_t	*exit_tex;
-	t_collectibles	*collectibles;
 }					t_game;
 
-// void		print_map(t_game *game);
-// so_long.c
+// main.c
 void		check_map(t_game *game);
 void		check_extension(char *argv);
 // read_map.c
@@ -84,7 +76,7 @@ void		ft_init(t_game *game);
 void		move_in_map(t_game *game);
 void		handle_key(mlx_key_data_t keydata, void *param);
 //image.c
-void		str_moves(t_game *game, int c);
+void		moves_to_wnd(t_game *game, int c);
 void		ft_load_png(t_game *game);
 void		ft_tex_to_img(t_game *game);
 void		ft_img_to_wnd(t_game *game, int x, int y);
