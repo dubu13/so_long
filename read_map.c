@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 18:16:27 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/13 22:50:42 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/13 23:28:05 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	save_map(char *file, t_game *game)
 	game->map = ft_split(game->map_temp, '\n');
 	if (!game->map)
 	{
-		// free_map(game);
-		free_copy(game->map, game->rows);
+		free_map(game->map, game->rows);
 		msg_exit("Error in 'save_map'\n", 1);
 	}
 	free(game->map_temp);

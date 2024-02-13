@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/13 22:50:11 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/13 23:40:22 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,33 +65,35 @@ void		check_extension(char *argv);
 // read_map.c
 void		save_map(char *file, t_game *game);
 void		file_to_map(t_game *game, int fd);
+char		**copy_map(t_game *game);
 // check_map.c
-void		count_epc(t_game *game, int x, int y);
 void		map_shape(t_game *game);
 void		check_elements(t_game *game);
 void		check_epc(t_game *game);
 void		check_wall(t_game *game);
+void		count_epc(t_game *game, int x, int y);
+// check_map2.c
+void		check_validpath(t_game *game);
+void		fill_map(char **map_copy, int x, int y);
+int			check_e_c(char **map_copy);
 // game.c
 void		ft_init(t_game *game);
 void		move_in_map(t_game *game);
+void		ft_img_to_wnd(t_game *game, int y, int x);
 void		handle_key(mlx_key_data_t keydata, void *param);
 //image.c
-void		moves_to_wnd(t_game *game, int c);
 void		ft_load_png(t_game *game);
 void		ft_tex_to_img(t_game *game);
-void		ft_img_to_wnd(t_game *game, int x, int y);
+void		moves_to_wnd(t_game *game, int c);
 //key_moves.c
 void		move_up_down(t_game *game, char direction);
 void		move_left_right(t_game *game, char direction);
 void		update(t_game *game, int y, int x);
+void		update_player(t_game *game, int y, int x);
+void		update_collectible(t_game *game, int y, int x);
 // error_free.c
-// void		free_map(t_game *game);
-void		msg_exit(char *msg, int type);
 void		free_img_tex(t_game *game);
-void		check_validpath(t_game *game);
-char		**copy_map(t_game *game);
-void		fill_map(char **map_copy, int x, int y);
-int			check_e_c(char **map_copy);
-void		free_copy(char **map, int rows);
+void		msg_exit(char *msg, int type);
+void		free_map(char **map, int rows);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:41:19 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/13 22:48:45 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/13 23:28:46 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	update(t_game *game, int y, int x)
 	if (game->map[y][x] == EXIT && game->left_c == 0)
 	{
 		game->moves++;
-		// free_map(game);
-		free_copy(game->map, game->rows);
+		free_map(game->map, game->rows);
 		msg_exit("Congratulation!\nYou finished the game\n", 0);
 	}
 	if (game->map[y][x] == COLLECTIBLE)

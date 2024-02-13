@@ -6,13 +6,13 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 23:07:07 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/13 22:46:40 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/13 23:28:12 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_copy(char **map, int rows)
+void	free_map(char **map, int rows)
 {
 	int	y;
 
@@ -21,17 +21,6 @@ void	free_copy(char **map, int rows)
 		free(map[--y]);
 	free(map);
 }
-
-// void	free_map(t_game *game)
-// {
-// 	int	y;
-
-// 	y = game->rows;
-// 	while (y > 0)
-// 		free(game->map[--y]);
-// 	free(game->map);
-// }
-
 
 void	msg_exit(char *msg, int type)
 {

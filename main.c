@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/13 22:47:24 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/13 23:40:59 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static t_game	*initialize(void)
 {
 	t_game			*game;
 
-	game = ft_calloc(sizeof(t_game), 1);
+	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		exit(EXIT_FAILURE);
+		msg_exit("Memory allocation failed\n", 1);
 	game->moves = 0;
 	game->rows = 0;
 	game->cols = 0;
@@ -51,15 +51,15 @@ static t_game	*initialize(void)
 	return (game);
 }
 
-void leaks(void)
-{
-	system("leaks so_long");
-}
+// void leaks(void)
+// {
+// 	system("leaks so_long");
+// }
 
 int	main(int argc, char **argv)
 {
 	t_game	*game;
-	atexit(&leaks);
+	// atexit(&leaks);
 
 	if (argc != 2)
 		msg_exit("Error\nNumber of arguments should be 2\n", 1);
@@ -69,8 +69,7 @@ int	main(int argc, char **argv)
 	check_map(game);
 	ft_init(game);
 	free_img_tex(game);
-	// free_map(game);
-	free_copy(game->map, game->rows);
+	free_map(game->map, game->rows);
 	mlx_terminate(game->mlx_ptr);
 	free(game);
 }
