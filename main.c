@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/12 23:16:03 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/13 22:47:24 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	check_map(t_game *game)
 	game->left_c = game->count_c;
 	check_epc(game);
 	check_wall(game);
+	check_validpath(game);
 }
 
 void	check_extension(char *file)
@@ -68,7 +69,8 @@ int	main(int argc, char **argv)
 	check_map(game);
 	ft_init(game);
 	free_img_tex(game);
-	free_map(game);
+	// free_map(game);
+	free_copy(game->map, game->rows);
 	mlx_terminate(game->mlx_ptr);
 	free(game);
 }

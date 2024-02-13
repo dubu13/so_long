@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/12 23:20:51 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/13 22:50:11 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,13 @@ void		move_up_down(t_game *game, char direction);
 void		move_left_right(t_game *game, char direction);
 void		update(t_game *game, int y, int x);
 // error_free.c
-void		free_map(t_game *game);
+// void		free_map(t_game *game);
 void		msg_exit(char *msg, int type);
 void		free_img_tex(t_game *game);
+void		check_validpath(t_game *game);
+char		**copy_map(t_game *game);
+void		fill_map(char **map_copy, int x, int y);
+int			check_e_c(char **map_copy);
+void		free_copy(char **map, int rows);
 
 #endif

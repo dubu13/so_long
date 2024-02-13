@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 20:16:40 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/12 20:19:48 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/13 19:43:16 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	handle_key(mlx_key_data_t keydata, void *param)
 	t_game	*game;
 
 	game = param;
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	if ((keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
+		&& keydata.action == MLX_PRESS)
 		exit (EXIT_SUCCESS);
 	if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 		&& keydata.action == MLX_PRESS)
