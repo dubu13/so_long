@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_moves.c                                        :+:      :+:    :+:   */
+/*   key_moves_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:41:19 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/15 20:32:53 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/15 20:02:18 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	update_collectible(t_game *game, int y, int x)
 {
@@ -61,6 +61,7 @@ void	update(t_game *game, int y, int x)
 	}
 	ft_printf("Moves: %d\n", game->moves);
 	ft_printf("Collectibles left: %d\n", game->left_c);
+	moves_to_wnd(game, game->moves);
 }
 
 void	move_left_right(t_game *game, char direction)

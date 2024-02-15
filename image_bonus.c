@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   image_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:06:13 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/15 19:41:07 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/15 20:01:03 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
+
+void	moves_to_wnd(t_game *game, int c)
+{
+	char				*str;
+	char				*tmp;
+	static mlx_image_t	*img = NULL;
+
+	str = ft_itoa(c);
+	tmp = ft_strjoin("Moves: ", str);
+	if (img)
+		mlx_delete_image(game->mlx_ptr, img);
+	img = mlx_put_string(game->mlx_ptr, tmp, 0, 0);
+	free(str);
+	free(tmp);
+}
 
 void	ft_tex_to_img(t_game *game)
 {
