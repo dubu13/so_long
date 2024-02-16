@@ -6,11 +6,24 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:19:23 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/15 19:59:18 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/16 20:05:53 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	check_nl(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->map_temp[i + 1])
+	{
+		if (game->map_temp[i] == '\n' && game->map_temp[i + 1] == '\n')
+			msg_exit("Error\nMap has extra nl.\n", 1);
+		i++;
+	}
+}
 
 int	check_e_c(char **map_copy)
 {

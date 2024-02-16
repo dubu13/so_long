@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/15 15:31:47 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/16 20:01:39 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_game	*initialize(void)
 
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
-		msg_exit("Memory allocation failed\n", 1);
+		msg_exit("Memory allocation failed.\n", 1);
 	game->moves = 0;
 	game->rows = 0;
 	game->cols = 0;
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	t_game	*game;
 
 	if (argc != 2)
-		msg_exit("Error\nNumber of arguments should be 2\n", 1);
+		msg_exit("Error\nNumber of arguments should be 2.\n", 1);
 	check_extension(argv[1]);
 	game = initialize();
 	save_map(argv[1], game);

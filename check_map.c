@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 00:20:20 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/15 18:00:50 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/16 16:30:21 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	check_elements(t_game *game)
 		while (x < game->cols)
 		{
 			if (!ft_strchr("01CEP", game->map[y][x]))
-				msg_exit("Error\nMap should only contain 0,1,C,E,P\n", 1);
+				msg_exit("Error\nMap should only contain 0,1,C,E,P.\n", 1);
 			else if (game->map[y][x] == PLAYER)
 				count_epc(game, y, x);
 			else if (game->map[y][x] == COLLECTIBLE)

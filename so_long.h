@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/15 19:41:23 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/16 20:55:45 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define EXIT 'E'
 
 # define WALL_PNG "./texture/wall.png"
-# define FLOOR_PNG "./texture/floor.png"
+# define FLOOR_PNG "./texture/floor1.png"
 # define PLAYER_PNG "./texture/player.png"
 # define COLLECTIBLE_PNG "./texture/collectible.png"
 # define EXIT_PNG "./texture/exit.png"
@@ -75,7 +75,8 @@ void		count_epc(t_game *game, int x, int y);
 // check_map2.c
 void		check_validpath(t_game *game);
 void		fill_map(char **map_copy, int x, int y);
-int			check_e_c(char **map_copy);
+int			check_e_c(char **map_copy, t_game *game);
+void		check_nl(t_game *game);
 // game.c
 void		ft_init(t_game *game);
 void		move_in_map(t_game *game);
