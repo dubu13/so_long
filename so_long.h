@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/16 20:55:45 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/17 15:34:01 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/inc/libft.h"
 # include <fcntl.h>
-# include <unistd.h>
+// # include <unistd.h>
 
 # define IMG_PXL 64
 # define WND_NAME "so_long"

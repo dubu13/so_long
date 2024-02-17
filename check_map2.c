@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:19:23 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/16 20:57:43 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/17 15:24:17 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ int	check_e_c(char **map_copy, t_game *game)
 		while (x < game->cols)
 		{
 			if (map_copy[y][x] == COLLECTIBLE || map_copy[y][x] == EXIT)
-				//msg_exit("y u do this", 1);
 				return (1);
-			//else if (map_copy[y][x] != COLLECTIBLE || map_copy[y][x] != EXIT)
-			//	return (0);
 			x++;
 		}
 		y++;
@@ -70,6 +67,5 @@ void	check_validpath(t_game *game)
 	fill_map(map_copy, game->p_x, game->p_y);
 	if (check_e_c(map_copy, game))
 		msg_exit("Error\nUnplayable map.\n", 1);
-	//check_e_c(map_copy);
 	free_map(map_copy, game->rows);
 }

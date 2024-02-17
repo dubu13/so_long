@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/15 20:06:16 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/17 15:30:34 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/inc/libft.h"
 # include <fcntl.h>
-# include <unistd.h>
+// # include <unistd.h>
 
 # define IMG_PXL 64
 # define WND_NAME "so_long"
@@ -28,7 +28,7 @@
 # define EXIT 'E'
 
 # define WALL_PNG "./texture/wall.png"
-# define FLOOR_PNG "./texture/floor.png"
+# define FLOOR_PNG "./texture/floor1.png"
 # define PLAYER_PNG "./texture/player.png"
 # define COLLECTIBLE_PNG "./texture/collectible.png"
 # define EXIT_PNG "./texture/exit.png"
@@ -75,7 +75,8 @@ void		count_epc(t_game *game, int x, int y);
 // check_map2.c
 void		check_validpath(t_game *game);
 void		fill_map(char **map_copy, int x, int y);
-int			check_e_c(char **map_copy);
+int			check_e_c(char **map_copy, t_game *game);
+void		check_nl(t_game *game);
 // game.c
 void		ft_init(t_game *game);
 void		move_in_map(t_game *game);
@@ -84,6 +85,7 @@ void		handle_key(mlx_key_data_t keydata, void *param);
 //image.c
 void		ft_load_png(t_game *game);
 void		ft_tex_to_img(t_game *game);
+//bonus
 void		moves_to_wnd(t_game *game, int c);
 //key_moves.c
 void		move_up_down(t_game *game, char direction);

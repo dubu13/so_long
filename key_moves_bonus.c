@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:41:19 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/16 16:27:21 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/17 15:22:12 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	update(t_game *game, int y, int x)
 	if (game->map[y][x] == EXIT && game->left_c == 0)
 	{
 		game->moves++;
+		ft_printf("Moves: %d\n", game->moves);
+		moves_to_wnd(game, game->moves);
 		free_map(game->map, game->rows);
 		msg_exit("Congratulation!\nYou Finished The Game.\n", 0);
 	}
@@ -53,6 +55,7 @@ void	update(t_game *game, int y, int x)
 		update_collectible(game, y, x);
 		update_player(game, y, x);
 		game->moves++;
+		ft_printf("Collectibles left: %d\n", game->left_c);
 	}
 	else
 	{
@@ -60,7 +63,6 @@ void	update(t_game *game, int y, int x)
 		game->moves++;
 	}
 	ft_printf("Moves: %d\n", game->moves);
-	ft_printf("Collectibles left: %d\n", game->left_c);
 	moves_to_wnd(game, game->moves);
 }
 
