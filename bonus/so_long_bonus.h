@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/17 15:34:01 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/02/17 15:30:34 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
-# include "MLX42/include/MLX42/MLX42.h"
-# include "libft/inc/libft.h"
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../libft/inc/libft.h"
 # include <fcntl.h>
 
 # define IMG_PXL 64
@@ -84,6 +84,8 @@ void		handle_key(mlx_key_data_t keydata, void *param);
 //image.c
 void		ft_load_png(t_game *game);
 void		ft_tex_to_img(t_game *game);
+//bonus
+void		moves_to_wnd(t_game *game, int c);
 //key_moves.c
 void		move_up_down(t_game *game, char direction);
 void		move_left_right(t_game *game, char direction);

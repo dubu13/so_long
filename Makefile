@@ -1,13 +1,21 @@
 NAME = so_long
 NAME_BONUS = so_long_bonus
 
-CFLAGS = -Wall -Wextra -Werror -Ilibft -lft -Llibft/ -g3
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -ldl -lglfw -pthread -lm
+
+BONUS_DIR = bonus
 
 SRCS = main.c read_map.c check_map.c check_map2.c start.c image.c key_moves.c error_free.c
 
-SRCS_BONUS = main_bonus.c read_map_bonus.c check_map_bonus.c check_map2_bonus.c \
-				start_bonus.c image_bonus.c key_moves_bonus.c error_free_bonus.c
+SRCS_BONUS = $(addprefix $(BONUS_DIR)/, \
+			main_bonus.c read_map_bonus.c check_map_bonus.c check_map2_bonus.c \
+			start_bonus.c image_bonus.c key_moves_bonus.c error_free_bonus.c)
+
+OBJS = $(SRCS:.c=.o)
+
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 MLX_URL = https://github.com/codam-coding-college/MLX42.git
 MLX_PATH = ./MLX42/build
@@ -20,11 +28,11 @@ all: $(NAME)
 
 bonus: $(NAME_BONUS)
 
-$(NAME): lib $(SRCS)
-	@cc $(CFLAGS) $(SRCS) $(MLX) $(MLX_FLAGS) -o $(NAME)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	@cc $(CFLAGS) $(MLX) $(MLX_FLAGS) $(LIBFT) -o $(NAME) $(OBJS) -g3
 
-$(NAME_BONUS): lib $(SRCS_BONUS)
-	@cc $(CFLAGS) $(SRCS_BONUS) $(MLX) $(MLX_FLAGS) -o $(NAME_BONUS)
+$(NAME_BONUS): $(LIBFT) $(MLX) $(OBJS_BONUS)
+	@cc $(CFLAGS) $(MLX) $(MLX_FLAGS) $(LIBFT) -o $(NAME_BONUS) $(OBJS_BONUS) -g3
 
 lib: $(MLX) $(LIBFT)
 
@@ -33,13 +41,17 @@ $(MLX):
 		git clone $(MLX_URL) && \
 		cd MLX42 && cmake -B build && cmake --build build -j4; \
 	fi
-	@echo $(GREEN)"Building MLX42"$(DEFAULT);
 
 $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
+%.o : %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	@make clean -C $(LIBFT_PATH)
+	@rm -f $(OBJS)
+	@rm -f $(OBJS_BONUS)
 
 fclean: clean
 	@rm -f $(NAME)
@@ -49,4 +61,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, $(LIBFT_PATH)/libft.a, clean, fclean, re $(LIBFT)
+rebonus: fclean bonus
+
+.PHONY: all clean fclean re rebonus
