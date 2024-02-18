@@ -30,17 +30,7 @@ void	update_collectible(t_game *game, int y, int x)
 	}
 }
 
-void	update_player(t_game *game, int y, int x)
-{
-	if (game->map[y][x] != EXIT)
-		game->map[y][x] = PLAYER;
-	game->p_y = y;
-	game->p_x = x;
-	game->player->instances->x = game->p_x * IMG_PXL;
-	game->player->instances->y = game->p_y * IMG_PXL;
-}
-
-void	update(t_game *game, int y, int x)
+void	update(t_game *game, int y, int x, char direction)
 {
 	if (game->map[y][x] == EXIT && game->left_c == 0)
 	{
@@ -53,13 +43,13 @@ void	update(t_game *game, int y, int x)
 	if (game->map[y][x] == COLLECTIBLE)
 	{
 		update_collectible(game, y, x);
-		update_player(game, y, x);
+		update_player(game, y, x, direction);
 		game->moves++;
 		ft_printf("Collectibles left: %d\n", game->left_c);
 	}
 	else
 	{
-		update_player(game, y, x);
+		update_player(game, y, x, direction);
 		game->moves++;
 	}
 	ft_printf("Moves: %d\n", game->moves);
@@ -72,13 +62,13 @@ void	move_left_right(t_game *game, char direction)
 	{
 		if (game->map[game->p_y][game->p_x - 1] == WALL)
 			return ;
-		update(game, game->p_y, game->p_x - 1);
+		update(game, game->p_y, game->p_x - 1, direction);
 	}
 	if (direction == 'R')
 	{
 		if (game->map[game->p_y][game->p_x + 1] == WALL)
 			return ;
-		update(game, game->p_y, game->p_x + 1);
+		update(game, game->p_y, game->p_x + 1, direction);
 	}
 }
 
@@ -88,12 +78,12 @@ void	move_up_down(t_game *game, char direction)
 	{
 		if (game->map[game->p_y - 1][game->p_x] == WALL)
 			return ;
-		update(game, game->p_y - 1, game->p_x);
+		update(game, game->p_y - 1, game->p_x, direction);
 	}
 	if (direction == 'D')
 	{
 		if (game->map[game->p_y + 1][game->p_x] == WALL)
 			return ;
-		update(game, game->p_y + 1, game->p_x);
+		update(game, game->p_y + 1, game->p_x, direction);
 	}
 }
