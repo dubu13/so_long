@@ -29,6 +29,9 @@
 # define WALL_PNG "./texture/wall.png"
 # define FLOOR_PNG "./texture/floor1.png"
 # define PLAYER_PNG "./texture/player.png"
+# define PLAYER_B_PNG "./texture/player_b.png"
+# define PLAYER_L_PNG "./texture/player_l.png"
+# define PLAYER_R_PNG "./texture/player_r.png"
 # define COLLECTIBLE_PNG "./texture/collectible.png"
 # define EXIT_PNG "./texture/exit.png"
 
@@ -49,11 +52,17 @@ typedef struct s_game
 	mlx_image_t		*wall;
 	mlx_image_t		*floor;
 	mlx_image_t		*player;
+	mlx_image_t		*player_b;
+	mlx_image_t		*player_l;
+	mlx_image_t		*player_r;
 	mlx_image_t		*collectible;
 	mlx_image_t		*exit;
 	mlx_texture_t	*wall_tex;
 	mlx_texture_t	*floor_tex;
 	mlx_texture_t	*player_tex;
+	mlx_texture_t	*player_b_tex;
+	mlx_texture_t	*player_l_tex;
+	mlx_texture_t	*player_r_tex;
 	mlx_texture_t	*collectible_tex;
 	mlx_texture_t	*exit_tex;
 }					t_game;
@@ -89,9 +98,14 @@ void		moves_to_wnd(t_game *game, int c);
 //key_moves.c
 void		move_up_down(t_game *game, char direction);
 void		move_left_right(t_game *game, char direction);
-void		update(t_game *game, int y, int x);
-void		update_player(t_game *game, int y, int x);
+void		update(t_game *game, int y, int x, char direction);
 void		update_collectible(t_game *game, int y, int x);
+//player_move.c
+void	update_player(t_game *game, int y, int x, char direction);
+void	player_up(t_game *game, int x, int y);
+void	player_down(t_game *game, int x, int y);
+void	player_right(t_game *game, int x, int y);
+void	player_left(t_game *game, int x, int y);
 // error_free.c
 void		free_img_tex(t_game *game);
 void		msg_exit(char *msg, int type);

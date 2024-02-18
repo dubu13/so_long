@@ -22,7 +22,7 @@ void	moves_to_wnd(t_game *game, int c)
 	tmp = ft_strjoin("Moves: ", str);
 	if (img)
 		mlx_delete_image(game->mlx_ptr, img);
-	img = mlx_put_string(game->mlx_ptr, tmp, 0, 0);
+	img = mlx_put_string(game->mlx_ptr, tmp, 10, 0);
 	free(str);
 	free(tmp);
 }
@@ -37,6 +37,15 @@ void	ft_tex_to_img(t_game *game)
 		msg_exit("Error\nIn 'text_to_img'.\n", 1);
 	game->player = mlx_texture_to_image(game->mlx_ptr, game->player_tex);
 	if (!game->player)
+		msg_exit("Error\nIn 'text_to_img'.\n", 1);
+	game->player_b = mlx_texture_to_image(game->mlx_ptr, game->player_b_tex);
+	if (!game->player_b)
+		msg_exit("Error\nIn 'text_to_img'.\n", 1);
+	game->player_l = mlx_texture_to_image(game->mlx_ptr, game->player_l_tex);
+	if (!game->player_l)
+		msg_exit("Error\nIn 'text_to_img'.\n", 1);
+	game->player_r = mlx_texture_to_image(game->mlx_ptr, game->player_r_tex);
+	if (!game->player_r)
 		msg_exit("Error\nIn 'text_to_img'.\n", 1);
 	game->collectible = mlx_texture_to_image(game->mlx_ptr,
 			game->collectible_tex);
@@ -57,6 +66,15 @@ void	ft_load_png(t_game *game)
 		msg_exit("Error\nIn 'load_png'.\n", 1);
 	game->player_tex = mlx_load_png(PLAYER_PNG);
 	if (!game->player_tex)
+		msg_exit("Error\nIn 'load_png'.\n", 1);
+	game->player_b_tex = mlx_load_png(PLAYER_B_PNG);
+	if (!game->player_b_tex)
+		msg_exit("Error\nIn 'load_png'.\n", 1);
+	game->player_l_tex = mlx_load_png(PLAYER_L_PNG);
+	if (!game->player_l_tex)
+		msg_exit("Error\nIn 'load_png'.\n", 1);
+	game->player_r_tex = mlx_load_png(PLAYER_R_PNG);
+	if (!game->player_r_tex)
 		msg_exit("Error\nIn 'load_png'.\n", 1);
 	game->collectible_tex = mlx_load_png(COLLECTIBLE_PNG);
 	if (!game->collectible_tex)

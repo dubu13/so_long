@@ -86,6 +86,15 @@ void	ft_init(t_game *game)
 	move_in_map(game);
 	mlx_image_to_window(game->mlx_ptr, game->player, game->p_x * IMG_PXL,
 		game->p_y * IMG_PXL);
+	mlx_image_to_window(game->mlx_ptr, game->player_b, game->p_x * IMG_PXL,
+		game->p_y * IMG_PXL);
+	game->player_b->instances[0].enabled = false;
+	mlx_image_to_window(game->mlx_ptr, game->player_l, game->p_x * IMG_PXL,
+		game->p_y * IMG_PXL);
+	game->player_l->instances[0].enabled = false;
+	mlx_image_to_window(game->mlx_ptr, game->player_r, game->p_x * IMG_PXL,
+		game->p_y * IMG_PXL);
+	game->player_r->instances[0].enabled = false;
 	mlx_key_hook(game->mlx_ptr, handle_key, game);
 	mlx_loop(game->mlx_ptr);
 }

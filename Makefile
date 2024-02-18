@@ -11,7 +11,7 @@ SRCS = main.c read_map.c check_map.c check_map2.c start.c image.c key_moves.c er
 
 SRCS_BONUS = $(addprefix $(BONUS_DIR)/, \
 			main_bonus.c read_map_bonus.c check_map_bonus.c check_map2_bonus.c \
-			start_bonus.c image_bonus.c key_moves_bonus.c error_free_bonus.c)
+			start_bonus.c image_bonus.c key_moves_bonus.c player_move.c error_free_bonus.c)
 
 OBJS = $(SRCS:.c=.o)
 
