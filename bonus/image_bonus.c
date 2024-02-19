@@ -19,7 +19,7 @@ void	moves_to_wnd(t_game *game, int c)
 	static mlx_image_t	*img = NULL;
 
 	str = ft_itoa(c);
-	tmp = ft_strjoin("Moves: ", str);
+	tmp = ft_strjoin("MOVES: ", str);
 	if (img)
 		mlx_delete_image(game->mlx_ptr, img);
 	img = mlx_put_string(game->mlx_ptr, tmp, 10, 0);

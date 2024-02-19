@@ -27,7 +27,7 @@
 # define EXIT 'E'
 
 # define WALL_PNG "./texture/wall.png"
-# define FLOOR_PNG "./texture/floor1.png"
+# define FLOOR_PNG "./texture/floor_new.png"
 # define PLAYER_PNG "./texture/player.png"
 # define PLAYER_B_PNG "./texture/player_b.png"
 # define PLAYER_L_PNG "./texture/player_l.png"
@@ -101,11 +101,11 @@ void		move_left_right(t_game *game, char direction);
 void		update(t_game *game, int y, int x, char direction);
 void		update_collectible(t_game *game, int y, int x);
 //player_move.c
-void	update_player(t_game *game, int y, int x, char direction);
-void	player_up(t_game *game, int x, int y);
-void	player_down(t_game *game, int x, int y);
-void	player_right(t_game *game, int x, int y);
-void	player_left(t_game *game, int x, int y);
+void		update_player(t_game *game, int y, int x, char direction);
+void		player_up(t_game *game, int x, int y);
+void		player_down(t_game *game, int x, int y);
+void		player_right(t_game *game, int x, int y);
+void		player_left(t_game *game, int x, int y);
 // error_free.c
 void		free_img_tex(t_game *game);
 void		msg_exit(char *msg, int type);

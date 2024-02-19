@@ -27,7 +27,7 @@
 # define EXIT 'E'
 
 # define WALL_PNG "./texture/wall.png"
-# define FLOOR_PNG "./texture/floor1.png"
+# define FLOOR_PNG "./texture/floor_new.png"
 # define PLAYER_PNG "./texture/player.png"
 # define COLLECTIBLE_PNG "./texture/collectible.png"
 # define EXIT_PNG "./texture/exit.png"
