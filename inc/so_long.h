@@ -6,15 +6,15 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/17 15:34:01 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/06/02 17:30:07 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "MLX42/include/MLX42/MLX42.h"
-# include "libft/inc/libft.h"
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../libft/inc/libft.h"
 # include <fcntl.h>
 
 # define IMG_PXL 64
