@@ -6,7 +6,7 @@
 /*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/17 15:20:20 by dhasan           ###   ########.fr       */
+/*   Updated: 2024/06/02 18:31:07 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,10 @@ void	check_extension(char *file)
 		msg_exit("Error\nMap should be in '.ber' format.\n", 1);
 }
 
-void leaks(void)
-{
-	system("leaks so_long");
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	atexit(&leaks);
 	if (argc != 2)
 		msg_exit("Error\nNumber of arguments should be 2.\n", 1);
 	check_extension(argv[1]);
