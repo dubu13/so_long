@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+         #
+#    By: dhasan <dhasan@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/02 18:24:15 by dhasan            #+#    #+#              #
-#    Updated: 2024/06/02 18:37:05 by dhasan           ###   ########.fr        #
+#    Updated: 2025/08/29 13:35:31 by dhasan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,18 +47,20 @@ bonus: $(NAME_BONUS)
 .SILENT:
 
 $(MLX):
-		cd MLX42 && cmake -B build && cmake --build build -j4;
+		@git submodule update --init --recursive
+		@cd MLX42 && cmake -B build > /dev/null && cmake --build build -j4 > /dev/null
 
-$(NAME): $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(MLX) $(MLX_FLAGS) $(LIBFT) -o $(NAME) $(OBJS) $(INCLUDE)
+$(NAME): $(LIBFT) $(OBJS) $(MLX)
+	$(CC) $(CFLAGS) $(LIBFT) -o $(NAME) $(OBJS) $(MLX) $(MLX_FLAGS) $(INCLUDE)
 	echo $(GREEN)"Building $(NAME)"$(DEFAULT);
 
-$(NAME_BONUS): $(LIBFT) $(MLX) $(OBJS_BONUS)
-	$(CC) $(CFLAGS) $(MLX) $(MLX_FLAGS) $(LIBFT) -o $(NAME_BONUS) $(OBJS_BONUS) $(INCLUDE)
+$(NAME_BONUS): $(LIBFT) $(OBJS_BONUS) $(MLX)
+	$(CC) $(CFLAGS) $(LIBFT) -o $(NAME_BONUS) $(OBJS_BONUS) $(MLX) $(MLX_FLAGS) $(INCLUDE)
 	echo $(GREEN)"Building $(NAME_BONUS)"$(DEFAULT);
 
 $(LIBFT):
-	make -C $(LIBFT_PATH)
+	@git submodule update --init --recursive
+	@make -C $(LIBFT_PATH) > /dev/null
 
 $(BINDIR):
 	echo $(GREEN)"Creating $(BINDIR) directory"$(DEFAULT);
@@ -72,9 +74,6 @@ $(BINDIR)/%.o: $(BONUS_DIR)/%.c inc/so_long_bonus.h | $(BINDIR)
 		$(CC) $(CFLAGS) -c $< -o $@
 		echo "Compiled $< into $@"
 
-submodule:
-	git submodule update --init --recursive
-
 clean:
 	make clean -C $(LIBFT_PATH)
 	rm -f $(BINDIR)/*.o
@@ -84,6 +83,8 @@ fclean: clean
 	rm -f $(NAME)
 	rm -f $(NAME_BONUS)
 	rm -rf $(BINDIR)
+	rm -rf libft
+	rm -rf MLX42
 	make fclean -C $(LIBFT_PATH)
 	echo $(RED)"Removing $(NAME) / $(NAME_BONUS) "$(DEFAULT);
 
