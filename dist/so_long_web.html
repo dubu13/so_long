@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+
+    <title>so_long Web Edition</title>
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div id="game-area">
+      <h1>so_long Web Edition</h1>
+      <p>
+        Welcome to the Gravity Falls themed 2D puzzle adventure!<br>
+        Use <b>WASD</b> or <b>Arrow Keys</b> to move your character.<br>
+        Collect all the mysterious items and reach the exit to win.<br>
+        Can you solve the maze and uncover the secrets?
+      </p>
+        <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+    </div>
+
+    <!-- Win popup styling is now in style.css -->
+    <div id="win-popup">
+      <div id="win-message"></div>
+      <button onclick="location.reload()">Reload</button>
+    </div>
+
+    <script type="text/javascript">
+      var canvasElement = document.getElementById('canvas');
+      var Module = {
+        canvas: canvasElement
+      };
+    </script>
+    
+    <script async type="text/javascript" src="so_long_web.js?v=1756411057"></script>
+  </body>
+</html>

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dhasan <dhasan@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/17 15:30:34 by dhasan           ###   ########.fr       */
+/*   Updated: 2025/08/31 16:33:01 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define SO_LONG_BONUS_H
 
 # include "../MLX42/include/MLX42/MLX42.h"
-# include "../libft/inc/libft.h"
+# include "../libft/include/libft.h"
 # include <fcntl.h>
+#include <emscripten/emscripten.h>
 
 # define IMG_PXL 64
 # define WND_NAME "so_long"
@@ -49,6 +50,7 @@ typedef struct s_game
 	int				count_c;
 	int				count_e;
 	int				moves;
+	int				ended;
 	mlx_image_t		*wall;
 	mlx_image_t		*floor;
 	mlx_image_t		*player;

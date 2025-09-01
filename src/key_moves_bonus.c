@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_moves.c                                        :+:      :+:    :+:   */
+/*   key_moves_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dhasan <dhasan@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:41:19 by dhasan            #+#    #+#             */
-/*   Updated: 2024/02/17 15:19:31 by dhasan           ###   ########.fr       */
+/*   Updated: 2025/08/31 17:23:46 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	update_collectible(t_game *game, int y, int x)
 {
@@ -30,68 +30,71 @@ void	update_collectible(t_game *game, int y, int x)
 	}
 }
 
-void	update_player(t_game *game, int y, int x)
-{
-	if (game->map[y][x] != EXIT)
-		game->map[y][x] = PLAYER;
-	game->p_y = y;
-	game->p_x = x;
-	game->player->instances->x = game->p_x * IMG_PXL;
-	game->player->instances->y = game->p_y * IMG_PXL;
-}
-
-void	update(t_game *game, int y, int x)
+void	update(t_game *game, int y, int x, char direction)
 {
 	if (game->map[y][x] == EXIT && game->left_c == 0)
 	{
+		game->ended = 1;
 		game->moves++;
 		ft_printf("Moves: %d\n", game->moves);
+		moves_to_wnd(game, game->moves);
 		free_map(game->map, game->rows);
-		msg_exit("Congratulation!\nYou Finished The Game.\n", 0);
+		// msg_exit("Congratulation!\nYou Finished The Game.\n", 0);
+
+		emscripten_run_script(
+            "document.getElementById('win-message').innerHTML = 'Congratulations! You Finished The Game.';"
+            "document.getElementById('win-popup').style.display = 'block';"
+        );
+		return;
 	}
 	if (game->map[y][x] == COLLECTIBLE)
 	{
 		update_collectible(game, y, x);
-		update_player(game, y, x);
+		update_player(game, y, x, direction);
 		game->moves++;
 		ft_printf("Collectibles left: %d\n", game->left_c);
 	}
 	else
 	{
-		update_player(game, y, x);
+		update_player(game, y, x, direction);
 		game->moves++;
 	}
 	ft_printf("Moves: %d\n", game->moves);
+	moves_to_wnd(game, game->moves);
 }
 
 void	move_left_right(t_game *game, char direction)
 {
-	if (direction == 'L')
-	{
+	if (game->ended)
+		return;
+
+	if (direction == 'L') {
 		if (game->map[game->p_y][game->p_x - 1] == WALL)
 			return ;
-		update(game, game->p_y, game->p_x - 1);
+		update(game, game->p_y, game->p_x - 1, direction);
 	}
-	if (direction == 'R')
-	{
+
+	if (direction == 'R') {
 		if (game->map[game->p_y][game->p_x + 1] == WALL)
 			return ;
-		update(game, game->p_y, game->p_x + 1);
+		update(game, game->p_y, game->p_x + 1, direction);
 	}
 }
 
 void	move_up_down(t_game *game, char direction)
 {
-	if (direction == 'U')
-	{
+	if (game->ended)
+		return;
+
+	if (direction == 'U') {
 		if (game->map[game->p_y - 1][game->p_x] == WALL)
 			return ;
-		update(game, game->p_y - 1, game->p_x);
+		update(game, game->p_y - 1, game->p_x, direction);
 	}
-	if (direction == 'D')
-	{
+
+	if (direction == 'D') {
 		if (game->map[game->p_y + 1][game->p_x] == WALL)
 			return ;
-		update(game, game->p_y + 1, game->p_x);
+		update(game, game->p_y + 1, game->p_x, direction);
 	}
 }

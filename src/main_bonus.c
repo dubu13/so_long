@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhasan <dhasan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dhasan <dhasan@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:03:24 by dhasan            #+#    #+#             */
-/*   Updated: 2024/06/02 18:31:07 by dhasan           ###   ########.fr       */
+/*   Updated: 2025/09/01 17:21:11 by dhasan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,28 @@ void	check_map(t_game *game)
 
 void	check_extension(char *file)
 {
-	int	len;
+	char *ext;
 
-	len = ft_strlen(file);
-	if (file[len - 1] != 'r' || file[len - 2] != 'e' \
-		|| file[len - 3] != 'b' || file[len - 4] != '.')
+	ext = ft_strrchr(file, '.');
+	
+	if (ext == NULL || ft_strncmp(ext, ".ber\0", 5) != 0)
 		msg_exit("Error\nMap should be in '.ber' format.\n", 1);
 }
 
-int	main(int argc, char **argv)
+int	main(void)
 {
 	t_game	*game;
 
-	if (argc != 2)
-		msg_exit("Error\nNumber of arguments should be 2.\n", 1);
-	check_extension(argv[1]);
+	// if (argc != 2)
+	// 	msg_exit("Error\nNumber of arguments should be 2.\n", 1);
+
+	check_extension("valid3.ber");
+	
 	game = ft_calloc(1, sizeof(t_game));
+	game->ended = 0;
 	if (!game)
 		msg_exit("Memory allocation failed.\n", 1);
-	save_map(argv[1], game);
+	save_map("maps/valid3.ber", game);
 	check_map(game);
 	ft_init(game);
 	free_img_tex(game);
