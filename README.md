@@ -10,8 +10,12 @@ You can try a **web version** of the game here: [Play so_long online](https://so
 ## How to Build & Run (Local)
 
 ```bash
-make / make bonus
+make
 ./so_long maps/example.ber
+```
+```bash
+make bonus
+./so_long_bonus maps/example.ber
 ```
 
 - Controls: Arrow keys or WASD to move.
